@@ -1,3 +1,3 @@
-# animate
-HTML, CSS, JQUERY:
-https://aviv-mizrachi-animation.herokuapp.com/
+# Animation
+HTML5, CSS3, JQUERY:  
+[Demo project](https://aviv-mizrachi-animation.herokuapp.com/)

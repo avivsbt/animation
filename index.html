@@ -1,23 +1,24 @@
 <html>
 
-<head> 
-	<title>animate</title>
+<head>
+	<title>Animation</title>
 	<link href="https://fonts.googleapis.com/css?family=Lato:200,200i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	
+	<script src="lib/jquery-3.4.1.min.js"></script>
+
 	<style>
-		body{
+		body {
 			background-color: #000;
 			font-family: 'Lato', sans-serif;
-			overflow:hidden;
+			overflow: hidden;
 			font-style: italic;
-			background: url(img/pc002.jpg);
+			background: url(img/pc001.jpg);
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center center;
-		}	
-		.bg-black{
+		}
+
+		.bg-black {
 			background-color: rgba(0, 0, 0, 0.9);
 			width: 100%;
 			height: 100%;
@@ -26,28 +27,28 @@
 			left: 0;
 			z-index: 100;
 			animation-name: bgBlack;
-			animation-duration: 1s;	
-			animation-fill-mode: forwards;			
-		}	
-		.coverAnimation{
-			position: absolute;
-			margin: auto;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;		
-		}	
-		.coverLine{
-			width: 500px;
-			position:relative;
-			margin: 0 auto;
-			overflow:hidden;
-			text-align: center;			
+			animation-duration: 1s;
+			animation-fill-mode: forwards;
 		}
-		.coverSecondLine{
+
+		.coverAnimation {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			min-height: 100vh;
+		}
+
+		.coverLine {
+			overflow: hidden;
+		}
+
+		.coverSecondLine {
 			margin-top: 5px;
-		}	
-		.h1{
+		}
+
+		.h1 {
 			text-transform: uppercase;
 			height: 100%;
 			width: 100%;
@@ -58,75 +59,86 @@
 			font-family: "Lato";
 			font-weight: 900;
 			font-style: italic;
-		}	
-		.mainLine{
+		}
+
+		.mainLine {
 			width: 0;
 			max-width: 500px;
 			position: relative;
 			animation-name: mainLine;
 			animation-duration: 0.5s;
-			animation-fill-mode: forwards; 
+			animation-fill-mode: forwards;
 			left: 0;
 			font-size: 0;
 		}
-		.secondLine{
+
+		.secondLine {
 			max-width: 100%;
 			animation-delay: 0.2s;
 		}
-		.rightLine{
+
+		.rightLine {
 			width: 0;
 			height: 100%;
 			background-color: #00BFFF;
 			position: absolute;
 			right: 0;
 			animation-name: rightLine;
-			animation-duration: 0.5s;			
+			animation-duration: 0.5s;
 		}
-		.secondRightLine{
+
+		.secondRightLine {
 			animation-delay: 0.2s;
 		}
-		.topLine{
+
+		.topLine {
 			width: 100%;
 			height: 0;
 			background-color: #00BFFF;
 			position: absolute;
-			top: 0;		
+			top: 0;
 			animation-name: topLine;
 			animation-duration: 0.5s;
-			animation-delay: 0.6s;	
-			animation-fill-mode: forwards;	
-			z-index: -1;			
-		}	
-		.secondTopLine{
+			animation-delay: 0.6s;
+			animation-fill-mode: forwards;
+			z-index: -1;
+		}
+
+		.secondTopLine {
 			animation-delay: 0.8s;
 		}
-		.whiteLine{
+
+		.whiteLine {
 			background-color: #fff;
 			height: 100%;
 			width: 100%;
 			position: absolute;
-			bottom: 0;	
-			z-index:-2;
+			bottom: 0;
+			z-index: -2;
 			animation-name: whiteLine;
 			animation-duration: 0.5s;
-			animation-delay: 0.6s;		
+			animation-delay: 0.6s;
 			animation-fill-mode: forwards;
 		}
-		.secondWhiteLine{
+
+		.secondWhiteLine {
 			animation-delay: 0.8s;
 		}
-		.slogan{
+
+		.slogan {
 			color: #fff;
-			text-align: center;	
+			text-align: center;
 			opacity: 0;
-			margin-top:0;
+			margin-top: 0;
 			animation-name: dropdown;
 			animation-duration: 0.5s;
-			animation-delay: 1s;		
+			animation-delay: 1s;
 			animation-fill-mode: forwards;
-			padding-top: 25px;
-		}	
-		.cover_but{
+			padding-top: 20px;
+			font-size: 4vw;
+		}
+
+		.cover_but {
 			font-style: normal;
 			opacity: 0;
 			margin-top: 0;
@@ -136,376 +148,450 @@
 			animation-fill-mode: forwards;
 			color: #fff;
 			text-align: center;
-			font-size: 22px;
-			padding-top: 25px;			
+			font-size: 14px;
+			padding-top: 20px;
+			width: 30%;
 		}
-		.but{
+
+		.but {
 			background-color: #00BFFF;
-			padding:8px 10px; 
+			padding: 8px 0;
 			text-transform: uppercase;
 			margin: 0 auto;
 			border-radius: 5px;
 			cursor: pointer;
 		}
-		.terms{
+
+		.terms {
 			font-size: 12px;
 			margin-top: 10px;
 		}
-		.terms a{
+
+		.terms a {
 			color: #fff;
 		}
-		.part1, .part2{
+
+		.part1,
+		.part2 {
 			position: relative;
 			float: left;
 			width: 48%;
 		}
-		.part1{
-			margin-right:18px;
-			text-align:right;
+
+		.part1 {
+			margin-right: 18px;
+			text-align: right;
 		}
-		.part2{
-			text-align:left;
-		}		
-		.slide{
+
+		.part2 {
+			text-align: left;
+		}
+
+		.slide {
 			animation-name: slide;
 			animation-duration: 0.5s;
-			animation-fill-mode: forwards;		
+			animation-fill-mode: forwards;
 		}
-		.text1{
+
+		.text1 {
 			float: right;
 		}
-		.text{
+
+		.text {
 			display: block;
-		}		
-		.secondh1{
-			margin-left: -286px;
-		}		
+		}
+
 		@keyframes bgBlack {
-			from {background-color: rgba(0, 0, 0, 0.9);}
-			to {background-color: rgba(0, 0, 0, 0);z-index: 0;}	
+			from {
+				background-color: rgba(0, 0, 0, 0.9);
+			}
+
+			to {
+				background-color: rgba(0, 0, 0, 0);
+				z-index: 0;
+			}
 		}
+
 		@keyframes rightLine {
-			10% {width: 80px;-80px}
-			65% {width: 20px;right: -20px}	
-			100% {width: 0;right: 0px}
-		}	
+			10% {
+				width: 80px;
+				right: -80px
+			}
+
+			65% {
+				width: 20px;
+				right: -20px
+			}
+
+			100% {
+				width: 0;
+				right: 0px
+			}
+		}
+
 		@keyframes topLine {
-			from {top:0; height: 0%;}
-			to {top:100%; height: 100%;}
-		}	
+			from {
+				top: 0;
+				height: 0%;
+			}
+
+			to {
+				top: 100%;
+				height: 100%;
+			}
+		}
+
 		@keyframes whiteLine {
-			from {height: 100%;}
-			to {height: 0%;}		
+			from {
+				height: 100%;
+			}
+
+			to {
+				height: 0%;
+			}
 		}
+
 		@keyframes dropdown {
-			from {opacity: 0;margin-top:0;}
-			to {opacity: 1;margin-top:5px;}		
-		}	
-		@media only screen and (min-width: 300px) and (max-width: 480px)  {	
+			from {
+				opacity: 0;
+				margin-top: 0;
+			}
+
+			to {
+				opacity: 1;
+				margin-top: 5px;
+			}
+		}
+
+		@media only screen and (min-width: 300px) and (max-width: 480px) {
 			@keyframes mainLine {
-				from {width: 0%;font-size: 0;}
-				to {width: 100%;font-size: 10px;}		
+				from {
+					width: 0%;
+					font-size: 0;
+				}
+
+				to {
+					width: 100%;
+					font-size: 10px;
+				}
 			}
+
 			@keyframes slide {
-				from {margin-top: -18px;}
-				to {margin-top: 0;}		
-			}	
-			.coverFirstLine{
+				from {
+					margin-top: -18px;
+				}
+
+				to {
+					margin-top: 0;
+				}
+			}
+
+			.coverFirstLine {
 				width: 320px;
 			}
-			.firstLine{
+
+			.firstLine {
 				width: 320px;
 			}
-			.mainLine{
+
+			.mainLine {
 				height: 18px;
 			}
-			.coverLine{
+
+			.coverLine {
 				height: 18px;
-				line-height: 18px;		
+				line-height: 18px;
 			}
-			.part1, .part2{
+
+			.part1,
+			.part2 {
 				height: 18px;
-			}	
-			.slogan{
-				font-size: 14px;
-				padding-top: 10px;
-			}	
-			.coverSecondLine{
+			}
+
+			.coverSecondLine {
 				width: 100%;
 			}
-			.coverAnimation{
-				height: 192px;		
-			}	
-			.cover_but{
-				padding-top: 10px;
-			}
-			.but{
-				width: 25%;
-				padding:8px 10px; 
-				font-size: 13px;
-			}
-			.part1{
+
+			.part1 {
 				margin-right: 5px;
-			}			
-			.secondh1{
-				margin-left: -59px;
-			}							
+			}
+
 		}
-		@media only screen  and (min-width : 480px) {
+
+		@media only screen and (min-width : 480px) {
 			@keyframes mainLine {
-				from {width: 0%;font-size: 0;}
-				to {width: 100%;font-size: 14px;}		
+				from {
+					width: 0%;
+					font-size: 0;
+				}
+
+				to {
+					width: 100%;
+					font-size: 14px;
+				}
 			}
+
 			@keyframes slide {
-				from {margin-top: -24px;}
-				to {margin-top: 0;}		
-			}			
-			.mainLine{
+				from {
+					margin-top: -24px;
+				}
+
+				to {
+					margin-top: 0;
+				}
+			}
+
+			.mainLine {
 				height: 24px;
 			}
-			.coverLine{
+
+			.coverLine {
 				height: 24px;
-				line-height: 24px;		
+				line-height: 24px;
 			}
-			.part1, .part2{
+
+			.part1,
+			.part2 {
 				height: 24px;
-			}	
-			.slogan{
-				font-size: 14px;
-				padding-top: 10px;
-			}	
-			.coverSecondLine{
+			}
+
+			.coverSecondLine {
 				width: 100%;
 			}
-			.coverAnimation{
-				height: 265px;		
-			}	
-			.cover_but{
-				padding-top: 10px;
-			}			
-			.but{
-				width: 25%;
-				padding:8px 10px; 
-				font-size: 13px;
-			}
-			.part1{
+
+			.part1 {
 				margin-right: 10px;
-			}			
-			.secondh1{
-				margin-left: -83px;
-			}	
-			
+			}
+
 		}
-		@media only screen  and (min-width : 640px) {
+
+		@media only screen and (min-width : 640px) {
 			@keyframes mainLine {
-				from {width: 0%;font-size: 0;}
-				to {width: 100%;font-size: 18px;}		
+				from {
+					width: 0%;
+					font-size: 0;
+				}
+
+				to {
+					width: 100%;
+					font-size: 18px;
+				}
 			}
+
 			@keyframes slide {
-				from {margin-top: -28px;}
-				to {margin-top: 0;}		
-			}			
-			.mainLine{
+				from {
+					margin-top: -28px;
+				}
+
+				to {
+					margin-top: 0;
+				}
+			}
+
+			.mainLine {
 				height: 28px;
 			}
-			.coverLine{
+
+			.coverLine {
 				height: 28px;
-				line-height: 28px;		
+				line-height: 28px;
 			}
-			.part1, .part2{
+
+			.part1,
+			.part2 {
 				height: 28px;
-			}	
-			.slogan{
-				font-size: 16px;
-			}	
-			.coverSecondLine{
+			}
+
+			.coverSecondLine {
 				width: 100%;
 			}
-			.coverAnimation{
-				height: 265px;		
-			}	
-			.but{
-				width: 25%;
-				padding:8px 20px; 
-				font-size: 13px;
-			}
-			.part1{
+
+			.part1 {
 				margin-right: 10px;
-			}			
-			.secondh1{
-				margin-left: -108px;
-			}						
+			}
+
 		}
-		@media only screen  and (min-width : 768px) {
+
+		@media only screen and (min-width : 768px) {
 
 			@keyframes mainLine {
-				from {width: 0%;font-size: 0;}
-				to {width: 100%;font-size: 22px;}		
+				from {
+					width: 0%;
+					font-size: 0;
+				}
+
+				to {
+					width: 100%;
+					font-size: 22px;
+				}
 			}
+
 			@keyframes slide {
-				from {margin-top: -33px;}
-				to {margin-top: 0;}		
-			}			
-			.mainLine{
+				from {
+					margin-top: -33px;
+				}
+
+				to {
+					margin-top: 0;
+				}
+			}
+
+			.mainLine {
 				height: 33px;
 			}
-			.coverLine{
+
+			.coverLine {
 				height: 33px;
-				line-height: 33px;		
+				line-height: 33px;
 			}
-			.part1, .part2{
+
+			.part1,
+			.part2 {
 				height: 33px;
-			}	
-			.slogan{
-				font-size: 18px;
-			}	
-			.coverSecondLine{
+			}
+
+			.coverSecondLine {
 				width: 100%;
 			}
-			.coverAnimation{
-				height: 265px;		
-			}	
-			.but{
-				width: 25%;
-				padding:8px 20px; 
-				font-size: 13px;
-			}
-			.part1{
+
+			.part1 {
 				margin-right: 10px;
 			}
-			.secondh1{
-				margin-left: -131px;
-			}				
+
 		}
-		@media only screen  and (min-width : 980px) {		
-			.secondh1{
-				margin-left: -130px;
-			}	
-		}
-		@media only screen  and (min-width : 1055px) {
+
+		@media only screen and (min-width : 1055px) {
 			@keyframes mainLine {
-				from {width: 0%;font-size: 0;}
-				to {width: 100%;font-size: 30px;}		
+				from {
+					width: 0%;
+					font-size: 0;
+				}
+
+				to {
+					width: 100%;
+					font-size: 30px;
+				}
 			}
+
 			@keyframes slide {
-				from {margin-top: -48px;}
-				to {margin-top: 0;}		
-			}			
-			.mainLine{
+				from {
+					margin-top: -48px;
+				}
+
+				to {
+					margin-top: 0;
+				}
+			}
+
+			.mainLine {
 				height: 48px;
 			}
-			.coverLine{
+
+			.coverLine {
 				height: 48px;
-				line-height: 48px;		
+				line-height: 48px;
 			}
-			.part1, .part2{
+
+			.part1,
+			.part2 {
 				height: 48px;
-			}	
-			.slogan{
-				font-size: 32px;
-			}	
-			.coverSecondLine{
+			}
+
+			.coverSecondLine {
 				width: 1055px;
 			}
-			.coverAnimation{
-				height: 295px;		
-			}	
-			.but{
-				width: 20%;
-				font-size: 18px;
-				padding:8px 35px;
-			}
-			.secondh1{
-				margin-left: -178px;
-			}			
 		}
-		@media only screen  and (min-width : 1224px) {
+
+		@media only screen and (min-width : 1224px) {
 			@keyframes mainLine {
-				from {width: 0%;font-size: 0;}
-				to {width: 100%;font-size: 40px;}		
+				from {
+					width: 0%;
+					font-size: 0;
+				}
+
+				to {
+					width: 100%;
+					font-size: 40px;
+				}
 			}
+
 			@keyframes slide {
-				from {margin-top: -64px;}
-				to {margin-top: 0;}		
-			}			
-			.mainLine{
+				from {
+					margin-top: -64px;
+				}
+
+				to {
+					margin-top: 0;
+				}
+			}
+
+			.mainLine {
 				height: 64px;
 			}
-			.coverLine{
+
+			.coverLine {
 				height: 64px;
-				line-height: 64px;		
+				line-height: 64px;
 			}
-			.part1, .part2{
+
+			.part1,
+			.part2 {
 				height: 64px;
-			}	
-			.slogan{
-				font-size: 32px;
-			}	
-			.coverSecondLine{
+			}
+
+			.coverSecondLine {
 				width: 1405px;
 			}
-			.coverAnimation{
-				height: 280px;		
-			}	
-			.but{
-				width: 20%;
-				padding:8px 35px; 
-			}
-			.secondh1{
-				margin-left: -238px;
-			}	
-		}	
-		@media only screen  and (min-width : 1685px) {
+		}
+
+		@media only screen and (min-width : 1685px) {
 
 			@keyframes mainLine {
-				from {width: 0%;font-size: 0;}
-				to {width: 100%;font-size: 48px;}		
-			}	
+				from {
+					width: 0%;
+					font-size: 0;
+				}
+
+				to {
+					width: 100%;
+					font-size: 48px;
+				}
+			}
+
 			@keyframes slide {
-				from {margin-top: -77px;}
-				to {margin-top: 0;}		
-			}			
-			.mainLine{
+				from {
+					margin-top: -77px;
+				}
+
+				to {
+					margin-top: 0;
+				}
+			}
+
+			.mainLine {
 				height: 77px;
 			}
-			.coverLine{
+
+			.coverLine {
 				height: 77px;
-				line-height: 77px;		
+				line-height: 77px;
 			}
-			.part1, .part2{
+
+			.part1,
+			.part2 {
 				height: 77px;
-			}	
-			.slogan{
-				font-size: 32px;
-			}	
-			.coverSecondLine{
+			}
+
+			.coverSecondLine {
 				width: 1690px;
 			}
-			.coverAnimation{
-				height: 325px;		
-			}	
-			.but{
-				width: 20%;
-				padding:8px 35px; 
-			}	
-			.secondh1{
-				margin-left: -286px;
-			}			
 		}
-
-		.h1, h1 {
-			font-size: 2em;
-			line-height: unset;
-			text-shadow: none;
-		}
-		.but, .slogan, .terms{
-			text-shadow: none;
-		}	
 	</style>
 </head>
 
 <body>
-	<div class="bg-black"></div>	
+
+	<div class="bg-black"></div>
 	<div class="coverAnimation">
 		<div class="coverLine coverFirstLine">
 			<div class="mainLine firstLine">
@@ -514,7 +600,7 @@
 				<div class="topLine firstTopLine"></div>
 				<div class="whiteLine firstWhiteLine"></div>
 			</div>
-		</div>	
+		</div>
 		<div class="coverLine coverSecondLine">
 			<div class="mainLine secondLine">
 				<div class="rightLine secondRightLine"></div>
@@ -523,97 +609,103 @@
 						<span class="text1 text">Meet</span>
 					</div>
 					<div class="part2">
-						<span class="text2 text">Kinky Playmates</span>
-					</div>					
+						<span class="text2 text">Surf World</span>
+					</div>
 				</h1>
 				<div class="topLine secondTopLine"></div>
 				<div class="whiteLine secondWhiteLine"></div>
 			</div>
-		</div>	
-		<div class="slogan">Dating, Chat. Surf Community</div>
+		</div>
+		<div class="slogan">Weather app, Chat. Surf Community</div>
 		<div class="cover_but">
 			<div class="but">JOIN US NOW</div>
 			<div class="terms">
-				By joining surfing, you agree to our<br>
-				<a href="#">Terms & conditions</a> and <a href="#">Privacy Policy</a>
+				By joining surfing, you agree to our <a href="#">Terms & conditions</a> and <a href="#">Privacy Policy</a>
 			</div>
-		</div> 
+		</div>
 	</div>
-	
+
 	<script type="text/javascript">
+
 		var buckets = [
-			{text: 'DOMMES', place: '2'},
-			{text: 'OBEY', place: '1'},
-			{text: 'MASTERS', place: '2'},
-			{text: 'LEARN FROM', place: '1'},
-			{text: 'MENTORS', place: '2'},
-			{text: 'FIND', place: '1'},
-			{text: 'EVENTS', place: '2'},
-			{text: 'PLAY AT', place: '1'},
-			{text: 'Play WITH', textright: 'SUBS', place: '3'},
-			{text: 'PUNISH', place: '1'},
-			{text: 'FETISH MODELS', place: '2'},
-			{text: 'WATCH', place: '1'},
-			{text: 'KINKY PLAYMATES', place: '2'}
+			{ text: 'PROS', place: '2' },
+			{ text: 'LEARN', place: '1' },
+			{ text: 'SKILLS', place: '2' },
+			{ text: 'SHARE', place: '1' },
+			{ text: 'PICTURES', place: '2' },
+			{ text: 'FIND', place: '1' },
+			{ text: 'EVENTS', place: '2' },
+			{ text: 'CHATS WITH', textright: 'SURFERS', place: '3' },
+			{ text: 'JOIN FORUM', place: '1' },
+			{ text: 'VIDEO', place: '2' },
+			{ text: 'WATCH', place: '1' },
+			{ text: 'CHANNELS', place: '2' }
 		];
-		
-		$( document ).ready(function() {
-			setTimeout(function(){
-				$(".coverSecondLine").css('width','100%');
-			},2000);
-			setInterval(function(){ 
-				animateSlider(); 
+
+		$(document).ready(function () {
+
+			setTimeout(function () {
+				$(".text").css("display", "inline");
+				$(".secondh1").css({
+					marginLeft: parseInt(($(".text1").width() - $(".text2").width()) / 2) + 'px',
+				})
+			}, 500);
+
+			setTimeout(function () {
+				$(".coverSecondLine").css('width', '100%');
 			}, 2000);
-		});	
-		
+
+			setInterval(function () {
+				animateSlider();
+			}, 3000);
+		});
+
 		var ind = 0;
-		function animateSlider(){
+		function animateSlider() {
 
-			if(ind == buckets.length)	
+			if (ind == buckets.length)
 				ind = 0;
-				
-			if(buckets[ind].place == '1'){
-				$(".part1").prepend('<span class="text1 text">'+ buckets[ind].text+'</span>');
-				$(".text1").css("float", "none");
-				$(".text1").eq(0).addClass("slide");
-				setTimeout(function(){
-					$(".text1").last().remove();
-					setTimeout(function(){
-						$(".text1").css("float", "right");
-						$(".text1").removeClass(".slide");
-						$(".text1").css("margin-top", "0px");
-						animateCenter();
-						ind++;
-					},500);
-					
-				},500);
-			}
-			else if(buckets[ind].place == '2'){
-				$(".part2").prepend('<span class="text2 text">'+ buckets[ind].text+'</span>');
-				$(".text2").eq(0).addClass("slide");
-				setTimeout(function(){			
-					$(".text2").last().remove();
-					setTimeout(function(){
-						$(".text2").removeClass(".slide");
-						$(".text2").css("margin-top", "0px");
-						animateCenter();
-						ind++;
-					},500);
-				},500);
-			}
-			else if(buckets[ind].place == '3'){
-				$(".part1").prepend('<span class="text1 text">'+ buckets[ind].text+'</span>');
-				$(".part2").prepend('<span class="text2 text">'+ buckets[ind].textright+'</span>');
-				
 
+			if (buckets[ind].place == '1') {
+				$(".part1").prepend('<span class="text1 text">' + buckets[ind].text + '</span>');
+				$(".text1").css("float", "none");
+				$(".text1").eq(0).addClass("slide");
+				setTimeout(function () {
+					$(".text1").last().remove();
+					setTimeout(function () {
+						$(".text1").css("float", "right");
+						$(".text1").removeClass(".slide");
+						$(".text1").css("margin-top", "0px");
+						animateCenter();
+						ind++;
+					}, 500);
+
+				}, 500);
+			}
+			else if (buckets[ind].place == '2') {
+				$(".part2").prepend('<span class="text2 text">' + buckets[ind].text + '</span>');
+				$(".text2").eq(0).addClass("slide");
+				setTimeout(function () {
+					$(".text2").last().remove();
+					setTimeout(function () {
+						$(".text2").removeClass(".slide");
+						$(".text2").css("margin-top", "0px");
+						animateCenter();
+						ind++;
+					}, 500);
+				}, 500);
+			}
+			else if (buckets[ind].place == '3') {
+				$(".part1").prepend('<span class="text1 text">' + buckets[ind].text + '</span>');
+				$(".part2").prepend('<span class="text2 text">' + buckets[ind].textright + '</span>');
 				$(".text1").css("float", "none");
 				$(".text1").eq(0).addClass("slide");
 				$(".text2").eq(0).addClass("slide");
-				
-				setTimeout(function(){			
+
+				setTimeout(function () {
 					$(".text1").last().remove();
 					$(".text2").last().remove();
-					setTimeout(function(){
+					setTimeout(function () {
 						$(".text1").css("float", "right");
 						$(".text1").removeClass(".slide");
 						$(".text2").removeClass(".slide");
@@ -621,25 +713,20 @@
 						$(".text2").css("margin-top", "0px");
 						animateCenter();
 						ind++;
-					},500);
-				},500);
+					}, 500);
+				}, 500);
 			}
 		}
-		
-		function animateCenter(){
-			$(".text").css("display","inline");
+
+		function animateCenter() {
+			$(".text").css("display", "inline");
 			$(".secondh1").animate({
-				marginLeft: parseInt(($(".text1").width() - $(".text2").width() ) / 2) + 'px',
-			}, 300, function() {
-				$(".text").css("display","block");
+				marginLeft: parseInt(($(".text1").width() - $(".text2").width()) / 2) + 'px',
+			}, 300, function () {
+				$(".text").css("display", "block");
 			});
 		}
-				
-		
-		
 	</script>
-	
-	
 </body>
 
 </html>
